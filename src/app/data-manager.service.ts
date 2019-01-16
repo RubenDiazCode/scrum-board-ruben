@@ -32,7 +32,7 @@ getData(){
   return this.data;
 }
 
-addNewList(name){
+addNewList(name: string){
   const now = new Date();
   const newList: List ={
     listId: Date.now(),
@@ -44,6 +44,10 @@ addNewList(name){
   this.data.lists.push(newList);
 }
 
+
+deleteList(listId: number){
+  this.data.lists = this.data.lists.filter( list => list.listId !== listId);
+}
 
   constructor() { }
 }
