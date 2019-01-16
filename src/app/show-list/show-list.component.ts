@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { List } from '../models.interface'; 
 
 @Component({
   selector: 'app-show-list',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./show-list.component.scss']
 })
 export class ShowListComponent implements OnInit {
-
+  @Input() lists: Array<List>;
   constructor() { }
 
   ngOnInit() {

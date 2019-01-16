@@ -1,3 +1,7 @@
-<p>
-  list works!
-</p>
+<div class="list">
+  <h1>{{list.name}}</h1>
+  <div class="tasks">
+    <app-task *ngFor="let taskObj of list.tasks" [task]="taskObj"></app-task>
+  </div>
+  <input type="text" placeholder="añade tarea"/>
+</div>
