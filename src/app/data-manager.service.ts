@@ -31,5 +31,19 @@ export class DataManagerService {
 getData(){
   return this.data;
 }
+
+addNewList(name){
+  const now = new Date();
+  const newList: List ={
+    listId: Date.now(),
+    createdAt: now,
+    modifiedAt: now,
+    name,
+    tasks:[],
+  };
+  this.data.lists.push(newList);
+}
+
+
   constructor() { }
 }
