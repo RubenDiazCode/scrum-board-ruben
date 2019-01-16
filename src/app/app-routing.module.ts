@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { BoardComponent } from './board/board.component';
 
 const routes: Routes = [{
-  path:'', component: BoardComponent
+  path:'', 
+  component: BoardComponent,
 },
 { path:'**', redirectTo:'',pathMatch:'full',},
 ];
