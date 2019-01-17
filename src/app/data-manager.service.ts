@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {List} from './models.interface';
+import {Task} from './models.interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -75,6 +76,16 @@ findList(id:number){
     }
     i++;
   }
+}
+
+//borrador de tareas
+deleteTask(task: Task){
+  this.data.lists = this.data.lists.map(listObj =>{
+    if(listObj.listId == task.listId){
+      listObj.tasks = listObj.tasks.filter(taskObj => taskObj.taskId !== task.taskId);
+    }
+    return listObj;
+  });
 }
 
   constructor() { }

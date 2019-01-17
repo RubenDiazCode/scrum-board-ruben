@@ -13,10 +13,13 @@ taskText: string='';
   constructor(private dataService: DataManagerService) { }
 
 addTask(){
+  if(this.taskText !== ''){
   this.dataService.addNewTask(this.taskText,this.list.listId);
+  this.taskText='';
+  }
 }
 
- delete(id){
+ delete(){
   if(confirm('quieres borrar la lista '+this.list.name+ '?')){
     this.dataService.deleteList(this.list.listId);
   }
