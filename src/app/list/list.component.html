@@ -1,8 +1,14 @@
 <div class="list">
-  <h1>{{list.name}}</h1>
+  <h1>
+    <span *ngIf="!editing" (dblclick)="edit()">{{list.name}}</span>
+    <input *ngIf="editing" type="text" (keyup.enter)="editName()" (blur)="cancelEdit()" [(ngModel)]="list.name"/>
+</h1>
   <div class="tasks">
     <app-task *ngFor="let taskObj of list.tasks" [task]="taskObj"></app-task>
   </div>
-  <div (click)="delete()">borrar</div>
   <input  type="text" [(ngModel)]="taskText" placeholder="añade tarea" (keyup.enter)="addTask()"/>
+  <div class="buttons">
+      <i class="material-icons" (click)="delete()">delete</i>
+      <i class="material-icons" (click)="edit()">edit</i>
+  </div>
 </div>

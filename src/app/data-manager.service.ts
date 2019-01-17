@@ -88,6 +88,12 @@ deleteTask(task: Task){
   });
 }
 
+//edicion de lita
+editListName(list: List){
+  this.data.lists = this.data.lists
+  .map(listObj =>( listObj.listId === list.listId ? list : listObj));
+}
+
   constructor() { }
 }
 

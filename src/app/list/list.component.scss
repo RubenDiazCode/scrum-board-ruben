@@ -3,10 +3,16 @@
     background: snow;
     border-radius: 1em;
     margin: 0.5em;
+    text-align: center;
     input{
         all:unset;
         border-bottom: 1px solid gray;
         color: grey; 
         width: 100%;
     }
+}
+.butttons{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.2em;
 }
