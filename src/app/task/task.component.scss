@@ -4,7 +4,17 @@
     padding: 0.3em;
     margin-bottom: 2em;
     display: flex;
-    justify-items: flex-end;
+    
     flex-direction: column;
 
+}
+.controls{
+    opacity: 0;
+    transition: opacity 1s;
+    display: flex;
+    justify-items: flex-end;
+    align-content: flex-end;
+}
+.task:hover .controls{
+    opacity: 1;
 }
