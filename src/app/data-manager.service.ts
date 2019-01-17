@@ -31,7 +31,7 @@ export class DataManagerService {
 getData(){
   return this.data;
 }
-
+//funcionalidades de listas
 addNewList(name: string){
   const now = new Date();
   const newList: List ={
@@ -49,5 +49,34 @@ deleteList(listId: number){
   this.data.lists = this.data.lists.filter( list => list.listId !== listId);
 }
 
+
+//funcionalidades de tareas
+addNewTask(text: string, listId: number){
+  const now = new Date();
+  const newTask ={
+  listId,
+  taskId: Date.now(),
+  text,
+  completed: false,
+  color: 'green',
+  createdAt: now,
+  modifiedAt: now,
+
+  }
+  this.data.lists[this.findList(listId)].tasks.push(newTask);
+}
+
+//buscador de la lista que contiene la tarea
+findList(id:number){
+  var i: number = 0;
+  for( let list of this.data.lists){
+    if(list.listId === id){
+      return i;
+    }
+    i++;
+  }
+}
+
   constructor() { }
 }
+

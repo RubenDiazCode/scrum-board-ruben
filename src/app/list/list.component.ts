@@ -9,8 +9,12 @@ import { DataManagerService } from '../data-manager.service';
 })
 export class ListComponent  {
 @Input() list: List;
-
+taskText: string='';
   constructor(private dataService: DataManagerService) { }
+
+addTask(){
+  this.dataService.addNewTask(this.taskText,this.list.listId);
+}
 
  delete(id){
   if(confirm('quieres borrar la lista '+this.list.name+ '?')){

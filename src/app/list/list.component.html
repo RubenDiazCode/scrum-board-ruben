@@ -4,5 +4,5 @@
     <app-task *ngFor="let taskObj of list.tasks" [task]="taskObj"></app-task>
   </div>
   <div (click)="delete()">borrar</div>
-  <input type="text" placeholder="añade tarea"/>
+  <input  type="text" [(ngModel)]="taskText" placeholder="añade tarea" (keyup.enter)="addTask($event)"/>
 </div>
