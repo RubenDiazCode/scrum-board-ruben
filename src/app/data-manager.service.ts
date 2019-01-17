@@ -77,6 +77,10 @@ findList(id:number){
     i++;
   }
 }
+//buscador de tareas
+findTask(){
+  
+}
 
 //borrador de tareas
 deleteTask(task: Task){
@@ -88,11 +92,24 @@ deleteTask(task: Task){
   });
 }
 
-//edicion de lita
+//edicion de lista
 editListName(list: List){
   this.data.lists = this.data.lists
   .map(listObj =>( listObj.listId === list.listId ? list : listObj));
 }
+
+//edicion de tareas
+editTaskName(task: Task){
+  this.data.lists[this.findList(task.listId)].tasks=this.data.lists[this.findList(task.listId)].tasks
+  .map(taskObj =>( taskObj.listId === taskObj.listId ? task : taskObj) );
+}
+
+
+
+
+
+
+
 
   constructor() { }
 }

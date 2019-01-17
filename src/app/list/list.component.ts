@@ -39,7 +39,7 @@ addTask(){
  }
 
 cancelEdit(){
-  console.log(this.oldName);
+  console.log('cancel edit'+this.oldName);
 this.list.name = this.oldName;
 console.log(this.oldName);
 this.editing = false;

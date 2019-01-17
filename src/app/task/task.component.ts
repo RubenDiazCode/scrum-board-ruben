@@ -8,10 +8,22 @@ import { DataManagerService } from '../data-manager.service';
 })
 export class TaskComponent  {
 @Input() task: Task;
+  editing = false;
   constructor(private dataService:DataManagerService) { }
 
   deleteTask(){
-this.dataService.deleteTask(this.task);
+  this.dataService.deleteTask(this.task);
   }
+
+  editName(){
+    
+     this.dataService.editTaskName(this.task);
+     this.editing=false;
+   }
+   edit(){
+    
+   
+     this.editing=true;
+   }
 
 }

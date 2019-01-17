@@ -1,5 +1,6 @@
 <div class="task">
-  <h2>{{task.text}}</h2>
+  <h2><span *ngIf="!editing" (dblclick)="edit()">{{task.text}}</span>
+    <input *ngIf="editing" type="text" (keyup.enter)="editName()"  [(ngModel)]="task.text"/></h2>
   <div class="controls" >
     <i class="material-icons" (click)="deleteTask()">delete</i>
 </div>
