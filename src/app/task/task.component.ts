@@ -22,8 +22,12 @@ export class TaskComponent  {
    }
    edit(){
     
-   
      this.editing=true;
+   }
+
+   completed(){
+    this.task.completed=this.dataService.completedTask(this.task);
+   
    }
 
 }

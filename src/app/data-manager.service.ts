@@ -77,10 +77,7 @@ findList(id:number){
     i++;
   }
 }
-//buscador de tareas
-findTask(){
-  
-}
+
 
 //borrador de tareas
 deleteTask(task: Task){
@@ -104,7 +101,11 @@ editTaskName(task: Task){
   .map(taskObj =>( taskObj.listId === taskObj.listId ? task : taskObj) );
 }
 
-
+//comprobar estado
+completedTask(task: Task){
+  task.completed = !task.completed;
+  return task.completed;
+}
 
 
 
