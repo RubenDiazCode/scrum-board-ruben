@@ -11,6 +11,7 @@ import { TaskComponent } from './task/task.component';
 import { DataManagerService } from './data-manager.service';
 import { RegisterViewComponent } from './register-view/register-view.component';
 import { LoginVIewComponent } from './login-view/login-view.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoginVIewComponent } from './login-view/login-view.component';
     ListComponent,
     TaskComponent,
     RegisterViewComponent,
-    LoginVIewComponent
+    LoginVIewComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
