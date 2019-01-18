@@ -9,6 +9,7 @@ import { DataManagerService } from '../data-manager.service';
 export class TaskComponent  {
 @Input() task: Task;
   editing = false;
+  oldTaskText:string;
   constructor(private dataService:DataManagerService) { }
 
   deleteTask(){
@@ -16,12 +17,12 @@ export class TaskComponent  {
   }
 
   editName(){
-    
+      this.oldTaskText=this.task.text;
      this.dataService.editTaskName(this.task);
      this.editing=false;
    }
    edit(){
-    
+      this.oldTaskText=this.task.text;
      this.editing=true;
    }
 

@@ -1,7 +1,7 @@
 @import '../../variables.scss';
 header{
     height: $headerHeight;
-    background-color: chocolate;
+    background: linear-gradient(to bottom,chocolate, orange);
     display: flex;
     justify-content: center;
     align-items:center;

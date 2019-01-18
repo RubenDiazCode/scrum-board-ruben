@@ -96,9 +96,23 @@ editListName(list: List){
 }
 
 //edicion de tareas
-editTaskName(task: Task){
-  this.data.lists[this.findList(task.listId)].tasks=this.data.lists[this.findList(task.listId)].tasks
-  .map(taskObj =>( taskObj.listId === taskObj.listId ? task : taskObj) );
+editTaskName(newTask: Task){
+  // this.data.lists[this.findList(task.listId)].tasks=this.data.lists[this.findList(task.listId)].tasks
+  // .map(taskObj =>( taskObj.taskId === taskObj.taskId ? task : taskObj) );
+  this.data.lists=this.data.lists.map(list =>{
+    if(list.listId===newTask.listId){
+
+      list.tasks=list.tasks.map(task => {
+
+        if(task.taskId ===newTask.taskId){
+          return newTask;
+        }
+
+        return task;
+      })
+    }
+    return list;
+  })
 }
 
 //comprobar estado
