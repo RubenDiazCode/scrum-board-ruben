@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BoardComponent } from './board/board.component';
+import { LoginVIewComponent } from './login-view/login-view.component';
+import { RegisterViewComponent } from './register-view/register-view.component';
 
 const routes: Routes = [{
-  path:'', 
+  path:'board', 
   component: BoardComponent,
 },
-{ path:'**', redirectTo:'',pathMatch:'full',},
+{
+  path:'login', 
+  component: LoginVIewComponent,
+},
+{
+  path:'register', 
+  component: RegisterViewComponent,
+},
+{ path:'**', redirectTo:'login',pathMatch:'full',},
 ];
 
 

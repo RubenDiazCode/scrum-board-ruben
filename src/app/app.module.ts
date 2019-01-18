@@ -9,6 +9,8 @@ import { AddNewListComponent } from './add-new-list/add-new-list.component';
 import { ListComponent } from './list/list.component';
 import { TaskComponent } from './task/task.component';
 import { DataManagerService } from './data-manager.service';
+import { RegisterViewComponent } from './register-view/register-view.component';
+import { LoginVIewComponent } from './login-view/login-view.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { DataManagerService } from './data-manager.service';
     ShowListComponent,
     AddNewListComponent,
     ListComponent,
-    TaskComponent
+    TaskComponent,
+    RegisterViewComponent,
+    LoginVIewComponent
   ],
   imports: [
     BrowserModule,

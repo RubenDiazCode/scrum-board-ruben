@@ -1,7 +1,7 @@
 <div class="list">
   <h1>
     <span *ngIf="!editing" (dblclick)="edit()">{{list.name}}</span>
-    <input *ngIf="editing" type="text" (keyup.enter)="editName()" (blur)="cancelEdit()" [(ngModel)]="list.name"/>
+    <input autofocus *ngIf="editing" type="text" (keyup.enter)="editName()" (blur)="cancelEdit()" [(ngModel)]="list.name"/>
 </h1>
   <div class="tasks">
     <app-task *ngFor="let taskObj of list.tasks" [task]="taskObj"></app-task>

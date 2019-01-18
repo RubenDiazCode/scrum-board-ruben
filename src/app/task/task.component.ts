@@ -31,4 +31,11 @@ export class TaskComponent  {
    
    }
 
+   cancelEdit(){
+    console.log('cancel edit'+this.oldTaskText);
+  this.task.text = this.oldTaskText;
+  console.log(this.oldTaskText);
+  this.editing = false;
+  } 
+
 }
