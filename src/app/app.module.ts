@@ -12,6 +12,8 @@ import { DataManagerService } from './data-manager.service';
 import { RegisterViewComponent } from './register-view/register-view.component';
 import { LoginVIewComponent } from './login-view/login-view.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ApiService } from './api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,15 +25,17 @@ import { NavbarComponent } from './navbar/navbar.component';
     TaskComponent,
     RegisterViewComponent,
     LoginVIewComponent,
-    NavbarComponent
+    NavbarComponent,
+ 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
-    DataManagerService
+    DataManagerService, ApiService
   ],
   bootstrap: [AppComponent]
 })

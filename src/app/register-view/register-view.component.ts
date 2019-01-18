@@ -1,13 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-view',
   templateUrl: './register-view.component.html',
   styleUrls: ['./register-view.component.scss']
 })
-export class RegisterViewComponent implements OnInit {
-
-  constructor() { }
+export class RegisterViewComponent  {
+username: string;
+password: string;
+error: any;
+valid: any;
+  constructor(private api: ApiService, private router: Router) { }
+  register(){
+    const {username, password} = this;
+    if(this.username.trim() !== '' && password.trim() !== ''){
+      this.api.
+      register(username.trim(), password.trim())
+      .then(res =>{
+        this.valid = res;
+      })
+      .catch(error =>{
+        this.error=error;
+      })
+    }
+  }
 
   ngOnInit() {
   }
