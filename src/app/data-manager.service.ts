@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {List} from './models.interface';
 import {Task} from './models.interface';
+import { ApiService } from './api.service';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,52 +12,82 @@ import {Task} from './models.interface';
 export class DataManagerService {
   //definicion del modelo de datos
   data : {lists: Array<List>}= {
-    lists: [
-      {
-        listId: 0,
-        name:'to do',
-        createdAt: new Date(),
-        modifiedAt: new Date(),
-        tasks:[{
-          listId: 0,
-          taskId: 0,
-          text: 'texto de tarea',
-          completed: false,
-          color: 'white',
-          createdAt: new Date(),
-          modifiedAt: new Date(),
-          },
-        ],
-      }
-    ]
+    lists: [],
   }
+
+
+loadDataFromBackend(){
+  this.api
+      .getLists()
+      .then((rawLists: Array<any>) => {
+        console.log(rawLists);
+        const lists = rawLists.map(rawList => ({
+          listId: rawList.id,
+          createdAt: rawList.createdAt,
+          modifiedAt: rawList.updatedAt,
+          name: rawList.name,
+          tasks: [],
+        }));
+        Promise.all(
+          lists.map(async (list: List) => {
+            list.tasks = await this.api.getTasks(list.listId);
+            list.tasks = list.tasks.map((rawTask: any) => ({
+              listId: rawTask.idlist,
+              taskId: rawTask.id,
+              text: rawTask.task,
+              completed: false,
+              color: 'white',
+              createdAt: new Date(rawTask.createdAt),
+              modifiedAt: new Date(rawTask.updatedAt),
+            }));
+            return list;
+          }),
+        ).then(lists => {
+          this.data.lists = lists;
+        });
+      })
+.catch(() => this.router.navigate(['/login']));
+}
+
+
 getData(){
+  //return this.data;
+  //pillando los datos del backend
+  this.loadDataFromBackend();
   return this.data;
 }
 //funcionalidades de listas
 addNewList(name: string){
-  const now = new Date();
-  const newList: List ={
-    listId: Date.now(),
-    createdAt: now,
-    modifiedAt: now,
-    name,
-    tasks:[],
-  };
-  this.data.lists.push(newList);
+  // const now = new Date();
+  // const newList: List ={
+  //   listId: Date.now(),
+  //   createdAt: now,
+  //   modifiedAt: now,
+  //   name,
+  //   tasks:[],
+  // };
+  // this.data.lists.push(newList);
+  this.api.newList(name).then(res => {
+    console.log(res);
+    this.loadDataFromBackend();
+});
 }
 
 
 deleteList(listId: number){
-  this.data.lists = this.data.lists.filter( list => list.listId !== listId);
+ // this.data.lists = this.data.lists.filter( list => list.listId !== listId);
+ this.api.deleteList(listId).then(res =>{
+   this.loadDataFromBackend();
+ });
 }
 
 
 //funcionalidades de tareas
-addNewTask(text: string, listId: number){
+addNewTask(text: string, list: List){
   const now = new Date();
   const newTask ={
-  listId,
+    //listId,
+  listId: list.listId,
   taskId: Date.now(),
   text,
   completed: false,
@@ -64,7 +96,13 @@ addNewTask(text: string, listId: number){
   modifiedAt: now,
 
   }
-  this.data.lists[this.findList(listId)].tasks.push(newTask);
+  //this.data.lists[this.findList(listId)].tasks.push(newTask);
+  this.data.lists = this.data.lists.map(listObj => {
+    if (listObj.listId === list.listId) {
+      listObj.tasks.push(newTask);
+    }
+    return listObj;
+});
 }
 
 //buscador de la lista que contiene la tarea
@@ -126,6 +164,8 @@ completedTask(task: Task){
 
 
 
-  constructor() { }
+  constructor(private api: ApiService, private router: Router) {
+   // api.getLists();
+   }
 }
 

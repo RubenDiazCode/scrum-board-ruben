@@ -16,7 +16,7 @@ oldName: string;
 
 addTask(){
   if(this.taskText !== ''){
-  this.dataService.addNewTask(this.taskText,this.list.listId);
+  this.dataService.addNewTask(this.taskText,this.list);
   this.taskText='';
   }
 }
