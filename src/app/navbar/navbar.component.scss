@@ -1,3 +1,15 @@
-.active{
-    border-bottom: solid 1px red;
-}
+
+nav {
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    background: black;
+    a {
+      color: white;
+      margin: 1em;
+      text-decoration: none;
+    }
+    .active {
+      border-bottom: solid 1px red;
+    }
+  }

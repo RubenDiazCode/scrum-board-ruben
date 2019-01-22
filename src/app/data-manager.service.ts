@@ -80,32 +80,46 @@ deleteList(listId: number){
    this.loadDataFromBackend();
  });
 }
+//edicion de lista
+editListName(list: List){
+  // this.data.lists = this.data.lists
+  // .map(listObj =>( listObj.listId === list.listId ? list : listObj));
+  this.api.editList(list).then(res =>{
+    console.log(res);
+    this.loadDataFromBackend();
+  });
+}
 
 
 //funcionalidades de tareas
 addNewTask(text: string, list: List){
-  const now = new Date();
-  const newTask ={
-    //listId,
-  listId: list.listId,
-  taskId: Date.now(),
-  text,
-  completed: false,
-  color: 'green',
-  createdAt: now,
-  modifiedAt: now,
+//   const now = new Date();
+//   const newTask ={
+//     //listId,
+//   listId: list.listId,
+//   taskId: Date.now(),
+//   text,
+//   completed: false,
+//   color: 'green',
+//   createdAt: now,
+//   modifiedAt: now,
 
-  }
-  //this.data.lists[this.findList(listId)].tasks.push(newTask);
-  this.data.lists = this.data.lists.map(listObj => {
-    if (listObj.listId === list.listId) {
-      listObj.tasks.push(newTask);
-    }
-    return listObj;
+// }
+//   //this.data.lists[this.findList(listId)].tasks.push(newTask);
+//   this.data.lists = this.data.lists.map(listObj => {
+//     if (listObj.listId === list.listId) {
+//       listObj.tasks.push(newTask);
+//     }
+//     return listObj;
+// });
+
+this.api.newTask(list.listId, text).then(res => {
+  console.log(res);
+  this.loadDataFromBackend();
 });
 }
 
-//buscador de la lista que contiene la tarea
+//buscador de la lista que contiene la tarea (local)
 findList(id:number){
   var i: number = 0;
   for( let list of this.data.lists){
@@ -127,11 +141,6 @@ deleteTask(task: Task){
   });
 }
 
-//edicion de lista
-editListName(list: List){
-  this.data.lists = this.data.lists
-  .map(listObj =>( listObj.listId === list.listId ? list : listObj));
-}
 
 //edicion de tareas
 editTaskName(newTask: Task){

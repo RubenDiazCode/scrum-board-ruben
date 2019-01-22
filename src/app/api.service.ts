@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Task, List } from './models.interface';
+import { TaskComponent } from './task/task.component';
 
 @Injectable({
   providedIn: 'root',
@@ -67,5 +68,17 @@ export class ApiService {
   deleteList(id: number): any {
     const options = { headers: { Authorization: `Bearer ${this.jwt}` } };
     return this.http.delete('https://apitrello.herokuapp.com/list/' + id, options).toPromise();
+  }
+  editList(list: List): any {
+    const options = { headers: { Authorization: `Bearer ${this.jwt}` } };
+    const name = list.name;
+    const body = { name };
+    return this.http.put('https://apitrello.herokuapp.com/list/' + list.listId, body, options).toPromise();
+  }
+
+  newTask(idList:number, task: string):any{
+    const options = { headers: { Authorization: `Bearer ${this.jwt}` } };
+    const body={ idlist:idList, task}
+    return this.http.post('https://apitrello.herokuapp.com/tasks', body, options).toPromise();
   }
 }
