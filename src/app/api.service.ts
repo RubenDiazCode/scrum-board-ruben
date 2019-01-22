@@ -60,6 +60,7 @@ export class ApiService {
         });
     });
   }
+  //control de listas
   newList(name: string): any {
     const options = { headers: { Authorization: `Bearer ${this.jwt}` } };
     const body = { name };
@@ -75,10 +76,23 @@ export class ApiService {
     const body = { name };
     return this.http.put('https://apitrello.herokuapp.com/list/' + list.listId, body, options).toPromise();
   }
-
+//control de tareas
   newTask(idList:number, task: string):any{
     const options = { headers: { Authorization: `Bearer ${this.jwt}` } };
     const body={ idlist:idList, task}
     return this.http.post('https://apitrello.herokuapp.com/tasks', body, options).toPromise();
+  }
+
+  deleteTasks(idList: number){
+    const options = { headers: { Authorization: `Bearer ${this.jwt}` } };
+    return this.http.delete('https://apitrello.herokuapp.com/list/tasks/'+idList, options).toPromise();
+  }
+
+  editTask(task: Task){
+    const options={headers:{ Authorization: `Bearer ${this.jwt}`}};
+   const name= task.text;
+    const body ={task:task.text};
+    console.log('datos actualizados');
+    return this.http.put('https://apitrello.herokuapp.com/tasks/'+task.taskId, body, options).toPromise();
   }
 }

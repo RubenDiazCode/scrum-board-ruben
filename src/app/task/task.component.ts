@@ -13,7 +13,7 @@ export class TaskComponent  {
   constructor(private dataService:DataManagerService) { }
 
   deleteTask(){
-  this.dataService.deleteTask(this.task);
+  this.dataService.deleteTask(this.task.listId);
   }
 
   editName(){

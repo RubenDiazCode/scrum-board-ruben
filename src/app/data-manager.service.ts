@@ -132,12 +132,15 @@ findList(id:number){
 
 
 //borrador de tareas
-deleteTask(task: Task){
-  this.data.lists = this.data.lists.map(listObj =>{
-    if(listObj.listId == task.listId){
-      listObj.tasks = listObj.tasks.filter(taskObj => taskObj.taskId !== task.taskId);
-    }
-    return listObj;
+deleteTask(id:number){
+  // this.data.lists = this.data.lists.map(listObj =>{
+  //   if(listObj.listId == task.listId){
+  //     listObj.tasks = listObj.tasks.filter(taskObj => taskObj.taskId !== task.taskId);
+  //   }
+  //   return listObj;
+  // });
+  this.api.deleteTasks(id).then(res =>{
+    this.loadDataFromBackend();
   });
 }
 
@@ -146,20 +149,25 @@ deleteTask(task: Task){
 editTaskName(newTask: Task){
   // this.data.lists[this.findList(task.listId)].tasks=this.data.lists[this.findList(task.listId)].tasks
   // .map(taskObj =>( taskObj.taskId === taskObj.taskId ? task : taskObj) );
-  this.data.lists=this.data.lists.map(list =>{
-    if(list.listId===newTask.listId){
+  // this.data.lists=this.data.lists.map(list =>{
+  //   if(list.listId===newTask.listId){
 
-      list.tasks=list.tasks.map(task => {
+  //     list.tasks=list.tasks.map(task => {
 
-        if(task.taskId ===newTask.taskId){
-          return newTask;
-        }
+  //       if(task.taskId ===newTask.taskId){
+  //         return newTask;
+  //       }
 
-        return task;
-      })
-    }
-    return list;
-  })
+  //       return task;
+  //     })
+  //   }
+  //   return list;
+  // })
+  this.api.editTask(newTask).then(res =>{
+    console.log(res);
+    this.loadDataFromBackend();
+    console.log(res + 'backend cargado');
+  });
 }
 
 //comprobar estado
