@@ -3,7 +3,6 @@
     <input autofocus *ngIf="editing" type="text" (keyup.enter)="editName()" (blur)="cancelEdit()"  [(ngModel)]="task.text"/></h2>
   <div class="controls" >
     <i class="material-icons" (click)="edit()">edit</i>
-    <i class="material-icons" (click)="deleteTask()">delete</i>
     <i class="material-icons" (click)="completed()">done_outline</i>
 </div>
 </div>

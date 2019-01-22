@@ -22,7 +22,7 @@ addTask(){
 }
 
  delete(){
-  if(confirm('quieres borrar la lista '+this.list.name+ '?')){
+  if(confirm('¿Quieres borrar la lista '+this.list.name+ '? \nEsto también borrará TODAS LAS TAREAS.')){
     this.dataService.deleteList(this.list.listId);
   }
  }

@@ -90,7 +90,6 @@ export class ApiService {
 
   editTask(task: Task){
     const options={headers:{ Authorization: `Bearer ${this.jwt}`}};
-   const name= task.text;
     const body ={task:task.text};
     console.log('datos actualizados');
     return this.http.put('https://apitrello.herokuapp.com/tasks/'+task.taskId, body, options).toPromise();
